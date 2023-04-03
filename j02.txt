@@ -1,0 +1,321 @@
+﻿			JOURNAL:2
+
+Create following table with appropriate constraints.
+	Employee(Ename,City)
+	Emp_Company(Ename,Cname,Salary,Jdate)
+	Company(Cname,City)
+	Manager(Ename,Mname)
+	Emp_Shift(Ename,Shift)
+
+CREATE ALL TABLE AND INSERT RECORD.
+
+-->CREATE TABLE EMPLOYEE
+
+	CREATE TABLE EMPLOYEE
+	(
+	ENAME VARCHAR(20),
+	CITY VARCHAR(20)
+	);
+	
+	INSERT INTO EMPLOYEE
+	VALUES(‘ANIL’,’NAGPUR’);
+	INSERT INTO EMPLOYEE
+	VALUES(‘SHANKAR’,’BOMBAY’);
+	INSERT INTO EMPLOYEE
+	VALUES(‘JAYA’,’MADRAS’);
+	INSERT INTO EMPLOYEE
+	VALUES(‘SUNIL’,’BOMBAY’);
+	INSERT INTO EMPLOYEE
+	VALUES(‘VIJAY’,’DELHI’);
+	INSERT INTO EMPLOYEE
+	VALUES(‘PRAKASH’,’CALCUTTA’);
+	INSERT INTO EMPLOYEE
+	VALUES(‘AJAY’,’MADRAS’);
+
+
+
+-->CREATE TABLE EMP_COMPANY
+
+	CREATE TABLE EMP_COMPANY
+	(
+	ENAME VARCHAR(20),
+	CNAME VARCHAR(20),
+	SALARY NUMERIC(7),
+	JDATE DATE
+	);
+
+	INSERT INTO EMP_COMPANY
+	VALUES(‘ANIL’,’ACC’,1500,’1989-05-01’);
+	INSERT INTO EMP_COMPANY
+	VALUES(‘SHANKAR’,’TATA’,2000,’1990-07-10’);
+	INSERT INTO EMP_COMPANY
+	VALUES(‘JAYA’,’CMC’,1700,’1998-01-01’);
+	INSERT INTO EMP_COMPANY
+	VALUES(‘SUNIL’,’CMC’,1700,’1991-06-07’);
+	INSERT INTO EMP_COMPANY
+	VALUES(‘VIJAY’,’TATA’,5000,’1988-01-03’);
+	INSERT INTO EMP_COMPANY
+	VALUES(‘PRAKASH’,’ACC’,3000,’1989-05-27’);
+	INSERT INTO EMP_COMPANY
+	VALUES(‘AJAY’,’TATA’,8000,’1995-04-30’);
+
+
+
+
+
+-->CREATE TABLE COMPANY
+	
+	CREATE TABLE COMPANY
+	(
+	ENAME VARCHAR(20),
+	CITY VARCHAR(20)
+	);
+
+	INSERT INTO COMPANY
+	VALUES(‘ACC’,’MADRAS’);
+	INSERT INTO COMPANY
+	VALUES(‘TATA’,’BOMBAY’);
+	INSERT INTO COMPANY
+	VALUES(‘ACC’,’NAGPUR’);
+	INSERT INTO COMPANY
+	VALUES(‘CMC’,’BOMBAY’);	
+	INSERT INTO COMPANY
+	VALUES(‘TATA’,’DELHI’);
+
+-->CREATE TABLE EMP_SHIFT
+
+	CREATE TABLE EMP_SHIFT
+	(
+	ENAME VARCHAR(20),
+	SHIFT VARCHAR(20)
+	);
+
+	INSERT INTO EMP_SHIFT
+	VALUES(‘ANIL’,’A’);
+	INSERT INTO EMP_SHIFT
+	VALUES(‘SUNIL’,’B’);
+	INSERT INTO EMP_SHIFT
+	VALUES(‘JAYA’,’C’);
+	INSERT INTO EMP_SHIFT
+	VALUES(‘VIJAY’,’B’);
+	INSERT INTO EMP_SHIFT
+	VALUES(‘PRAKASH’,’C’);
+
+-->CREATE TABLE MANAGER
+
+	CREATE TABLE MANAGER
+	(
+	ENAME VARCHAR(20),
+	MNAME VARCHAR(20)
+	);
+
+	INSERT INTO MANAGER
+	VALUES(‘ANIL’,’AJAY’);
+	INSERT INTO MANAGER
+	VALUES(‘SHANKAR’,’VIJAY’);
+	INSERT INTO MANAGER
+	VALUES(‘JAYA’,’-’);
+	INSERT INTO MANAGER
+	VALUES(‘SUNIL’,’JAYA’);
+	INSERT INTO MANAGER
+	VALUES(‘VIJAY’,’-’);
+	INSERT INTO MANAGER
+	VALUES(‘PRAKASH’,’SHANKAR’);
+	INSERT INTO MANAGER
+	VALUES(‘AJAY’,’-’);
+
+QUERIES:
+
+1.Display all record of Employee.
+-->	SELECT * FROM EMPLOYEE;
+
+2.Retrieve employee name only from employee table
+-->	SELECT "ENAME" FROM "EMPLOYEE";
+
+3.Retrieve employee whose comes from MADRAS
+-->	SELECT * FROM "EMPLOYEE" 
+	WHERE "CITY" LIKE 'MADRAS';
+
+4.Change city with MUMBAI whose comes from BOMBAY
+-->	UPDATE EMPLOYEE
+	SET CITY='MUMBAI'
+	WHERE CITY='BOMBAY';
+
+5.Find employee name whose name’s third letter is ‘A’
+-->	SELECT "ENAME" FROM "EMPLOYEE" 
+	WHERE "ENAME" LIKE '__A%';
+
+6.Find employee name whose name’s contain KA latter and comes from MUMBAI
+-->	SELECT ENAME FROM EMPLOYEE 
+	WHERE "ENAME" LIKE '%KA%' AND CITY LIKE 'MUMBAI';
+
+7.Retrieve employee name which is having SH letter 
+-->	SELECT "ENAME" FROM "EMPLOYEE" WHERE "ENAME" LIKE '%SH%'
+
+8.Modify name ISWAR whose comes from NAGPUR
+-->	UPDATE EMPLOYEE SET ENAME=’ISHWAR’ WHERE CITY=’NAGPUR’;
+
+9.Display city name only in which city names are not duplicated
+-->	SELECT DISTINCT "CITY" FROM "EMPLOYEE";
+
+10Find employee name and date whose cname is ACC from employee company table.
+-->	SELECT "ENAME", "JDATE" FROM "EMP_COMPANY" WHERE "CANME" = 'ACC';
+
+11.Display employee name which is in descending order
+-->	SELECT "ENAME" FROM "EMPLOYEE" ORDER BY "ENAME" DESC;
+
+12.Display salary greater than 2000 from emp_company table
+-->	SELECT "SALARY" FROM "EMP_COMPANY" WHERE "SALARY" > 2000;
+
+13.Display joining date and salary whose salary between 1500 to 3000 from employee company
+-->	SELECT "SALARY", "JDATE" FROM "EMP_COMPANY" 
+	WHERE "SALARY" BETWEEN 1500 AND 3000;
+
+14.Display all record whose salary not between 2000 to 3000
+-->	SELECT * FROM "EMP_COMPANY" 
+	WHERE "SALARY" NOT BETWEEN 2000 AND 3000;
+
+15.Describe employee table
+-->	SELECT * FROM EMPLOYEE;
+
+16.Remove records whose are coming from CULCATTA
+-->	DELETE FROM EMPLOYEE WHERE CITY='CULCUTTA';
+
+17.Display employee name whose comes from MADRAS and NAGPUR
+-->	SELECT "ENAME" FROM "EMPLOYEE" 
+	WHERE "CITY" = 'MADRAS' AND "CITY" = 'NAGPUR';
+
+18.Display employee name whose comes from MADRAS or NAGPUR
+-->	SELECT "ENAME" FROM "EMPLOYEE" 
+	WHERE "CITY" = 'MADRAS' OR "CITY" = 'NAGPUR';
+
+19.Change table name with emp instead of Employee
+-->	ALTER TABLE EMPLOYEE
+	RENAME TO EMP;
+ 	
+20.Display record between 1-JAN-88 to 12-DEC-91
+-->	SELECT * FROM "EMP_COMPANY"
+	WHERE "JDATE" BETWEEN '1988-01-01' AND '1991-12-12';
+
+21.Retrieve data whose joining date is 3-JAN-88
+-->	SELECT * FROM "EMP_COMPANY" WHERE "JDATE" = '1988-03-01';
+
+22.Display and add 200 rupees in all salary 
+-->	SELECT "SALARY" + "SALARY*20/100" AS "BONUS", "SALARY" 
+	FROM "EMP_COMPANY";
+
+23.Add 20% bonus whose customer name is TATA.
+-->	SELECT [SALARY] [SALARY+20/100] AS
+	BONUS SALARY ENAME
+	FROM EMP_COMAPNY
+	WHERE CNMAE=”TATA”;
+
+24.Display cname with alias name like Customer Name.
+-->	SELECT CNAME AS CNAME 
+	FROM EMP_COMPANY;
+
+25.Display Jdate with alias name like Joing_Date or JOING DATE.
+-->	SELECT JDATE AS JOINOING DATE
+	FROM EMP_COMPANY;
+
+26.Change salary with 2300 rupees whose name is SUNIL.
+-->	UPDATE EMP_COMPANY
+	SET SALARY=2300
+	WHERE ENAME=”SUNIL”;
+
+27.Change with 12-MAY-90 Joining date whose cname is CMC and employee name JAYA.
+-->	UPDATE EMP_COMPANY
+	SET JDATE=”1990-05-12’
+	WHERE ENAME=”JAYA”;
+
+28.Display employee name, salary and joining date whose salary is greater than 3000 rs and joining date is 1-MAY-89.
+-->	SELECT ENAME,SALARY,JDATE
+	FROM EMP_COMPANY
+	WHERE SALARY>3000 AND JOINING DATE IS 1-MAY-89;
+
+29.Create empcmpy table from emp_company with all columname.
+-->	CREATE TABLE EMP_COMPANY
+	(
+	ENAME VARCHAR(20),
+	CNAME VARCHAR(20),
+	SALARY NUMERIC(10),
+	JDATE DATE
+	);
+
+30.Display all record whose joining date is greater than 12-DEC-91.
+-->	SELECT FROM EMP_COMPANY
+	WHERE JDATE>’1991-12-12’;
+
+31.Display salary with 5% penalty of AMOL.
+-->	SELECT [SALARY]-[SALARY+5/100] AS
+	PENALTY FROM EMP_COMPANY
+	WHERE ENAME=”AMOL”;
+
+32.Remove jdate column from emp_company table.
+-->	DELETE JDATE
+	FROM EMP_COMPANY;
+
+33.Giving less size of salary column from existing size.
+-->	SELECT FROM EMPLOYEE
+	WHERE ENAME LESS SALARY;
+
+34.Display information whose cname is TATA or CMC
+-->	SELECT FROM EMP_COMPANY
+	WHERE ENAME=”TATA” OR CNAME=”CMC”;
+
+35.Display all information of company table
+-->	SELECT FROM COMPANY;
+
+36.Remove Company table with record
+-->	DELETE FROM COMPANY;
+
+37.Delete all record of Company table
+-->	DELETE FROM COMPANY;
+
+38.Retrieve of all rows of manager
+-->	SELECT FROM MANAGER;
+
+39.Display manager name only from manager table
+-->	SELECT MNAME FROM MANAGER;
+
+40.Display JAYA’s employee name from manager table
+-->	SELECT ENAME FROM MANAGER
+	WHERE MNAME=”JAYA”;
+
+41.Add empid as new column in manager table
+-->	ALTER TABLE MANAGER
+	WHERE EMP_ID NUMERIC(10);
+
+42.Remove emplD column from manager table
+-->	DELETE EMP_ID FROM MANAGER;
+
+43.Display all record of employee shift table 
+-->	SELECT FROM EMP_SHIFT;
+
+44.Do not display duplicate value of shift column
+-->	SELECT DISTINCT SHIFT
+	FROM EMP_SHIFT;
+
+45.Change employee name with PRATIK whose shift is B
+-->	UPDATE EMP_SHIFT
+	SET ENAME=’PRATIK”
+	WHERE SHIFT=”B”;
+
+46.Copying shift data into another table
+-->	CREATE TABLE SHIFT
+	AS SELECT SHIFT FROM EMP_SHIFT;
+
+47.Remove data whose shift is C from employee shift
+-->	DELETE FROM EMP_SHIFT
+	WHERE SHIFT=”C”;
+
+48.Insert one record as system date in joining date column employee company table
+-->	ALTER TABLE EMP_COMPANY
+	ADD SYSTEM DATE DATE;
+
+49.Remove shift column from employee shift table
+-->	DELETE SHIFT FROM EMP_SHIFT;
+
+50.Remove employee shift table
+-->	DROP TABLE EMP_SHIFT;
+
